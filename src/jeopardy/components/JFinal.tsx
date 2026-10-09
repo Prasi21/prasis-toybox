@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import type { FinalRound, Player } from '../types'
 import { resolveImage } from '../loader'
 import { money } from '../format'
+import { RandomRoller } from './RandomRoller'
 
 type Props = {
   final: FinalRound
@@ -157,6 +158,8 @@ export function JFinal({ final, players, maxValue, onApply, onClose }: Props) {
               <img className="joverlay__img" src={resolveImage(page.image)} alt="" />
             )}
             <p className="joverlay__prompt">{page.prompt}</p>
+
+            {page.random && <RandomRoller spec={page.random} />}
 
             {pageRevealed && page.answer && (
               <div className="jclue__answer">

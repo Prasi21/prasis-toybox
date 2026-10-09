@@ -203,6 +203,7 @@ export default function JeopardyPlay() {
 
       {board && open && openClueData && (
         <JClueOverlay
+          key={`${open.catIndex}-${open.rowIndex}`}
           categoryTitle={openCategoryTitle}
           clue={openClueData}
           players={players}

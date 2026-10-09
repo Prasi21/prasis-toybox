@@ -90,3 +90,16 @@ export function formatBytes(bytes: number): string {
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
 }
+
+export type ProcessedAudio = { blob: Blob; name: string; size: number }
+
+/**
+ * Audio is committed as-is (the browser has no fast, reliable encoder). The
+ * editor surfaces the size and nudges you to pre-compress large clips.
+ */
+export async function processAudio(file: File): Promise<ProcessedAudio> {
+  const match = /\.([a-z0-9]+)$/i.exec(file.name)
+  const ext = (match?.[1] ?? 'mp3').toLowerCase()
+  const name = `${slug(file.name)}-${await shortHash(file)}.${ext}`
+  return { blob: file, name, size: file.size }
+}

@@ -417,6 +417,16 @@
   gap: 10px;
 }
 
+.admin-page-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid rgba(37, 49, 90, 0.35);
+  border-radius: 12px;
+}
+
 .admin-pages__row {
   display: grid;
   grid-template-columns: 1fr 1fr auto;
@@ -475,4 +485,114 @@
 .admin-preview__body .jboard {
   width: 100%;
   max-width: 1000px;
+}
+
+/* Row values --------------------------------------------------------------- */
+
+.admin-values {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.admin-values input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 2px solid var(--navy-900);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--navy-800);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Cards editor ------------------------------------------------------------- */
+
+.admin-details {
+  padding: 10px 12px;
+  border: 2px dashed rgba(37, 49, 90, 0.3);
+  border-radius: 12px;
+}
+
+.admin-details > summary {
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--indigo-600);
+}
+
+.admin-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.admin-card-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  background: #fff;
+  border: 2px solid rgba(37, 49, 90, 0.35);
+  border-radius: 12px;
+}
+
+.admin-card-item__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.admin-card-item__num {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange-600);
+}
+
+.admin-card-item__ctrl {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-card-item__row {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 110px;
+  gap: 8px;
+}
+
+.admin-card-item__row--random {
+  grid-template-columns: 1fr 110px 110px;
+}
+
+.admin-field select {
+  width: 100%;
+  padding: 9px 12px;
+  border: 2px solid var(--navy-900);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--navy-800);
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.admin-audio {
+  width: 100%;
+  margin-top: 4px;
+}
+
+@media (max-width: 560px) {
+  .admin-card-item__row {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-values {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

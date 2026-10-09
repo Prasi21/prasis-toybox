@@ -1,0 +1,305 @@
+{
+  "id": "prasis-jeopardy",
+  "title": "Prasi's Jeopardy!!!",
+  "description": "Anime, drinks and grab-bag chaos.",
+  "values": [100, 200, 300, 500, 1000],
+  "updatedAt": "2026-10-10",
+  "categories": [
+    {
+      "id": "amq",
+      "title": "AMQ",
+      "clues": [
+        {
+          "id": "amq-100",
+          "value": 100,
+          "prompt": "Name the Anime",
+          "audio": "audio/amq-100.mp3",
+          "answerAudio": "audio/amq-100-answer.mp3",
+          "answer": "Hunter x Hunter | OP 1 - Departure"
+        },
+        {
+          "id": "amq-200",
+          "value": 200,
+          "prompt": "Name the Anime",
+          "audio": "audio/amq-200.mp3",
+          "answerAudio": "audio/amq-200-answer.mp3",
+          "answer": "Jojo Part 5 – Golden Wind | OP 1 – Fighting Gold"
+        },
+        {
+          "id": "amq-300",
+          "value": 300,
+          "prompt": "Name the Anime",
+          "audio": "audio/amq-300.mp3",
+          "answerAudio": "audio/amq-300-answer.mp3",
+          "answer": "One Piece | OP 1 – 4kids Rap [3X speed]"
+        },
+        {
+          "id": "amq-500",
+          "value": 500,
+          "prompt": "Name the Anime",
+          "audio": "audio/amq-500.mp3",
+          "answerAudio": "audio/amq-500-answer.mp3",
+          "answer": "Dororo | OP 1 – Kaen"
+        },
+        {
+          "id": "amq-1000",
+          "value": 1000,
+          "prompt": "Name the Anime",
+          "audio": "audio/amq-1000.mp3",
+          "answerAudio": "audio/amq-1000-answer.mp3",
+          "answer": "Saga of Tanya the Evil | OP 1 – Jingo Jungle [Polish] [Instrumentals Removed]"
+        }
+      ]
+    },
+    {
+      "id": "grab-bag",
+      "title": "Grab Bag",
+      "clues": [
+        {
+          "id": "gb-100",
+          "value": 100,
+          "prompt": "What anime is this poster from?",
+          "image": "images/gb-poster-clue.webp",
+          "answerImage": "images/gb-poster.webp",
+          "rules": [
+            "Akashic Records of Bastard Magic Instructor",
+            "No Longer Allowed in Another World",
+            "The Wrong Way to Use Healing Magic",
+            "A Returner’s Magic Should Be Special",
+            "Naruto"
+          ],
+          "answer": "Akashic Records of Bastard Magic Instructor"
+        },
+        {
+          "id": "gb-200",
+          "value": 200,
+          "prompt": "Which of these anime finished airing the longest time ago?",
+          "rules": [
+            "Konosuba Season 1",
+            "Hunter x Hunter (2011)",
+            "Black Clover",
+            "One punch man Season 1",
+            "The Devil is a Part-Timer"
+          ],
+          "answer": "The Devil is a Part-Timer - Jun 27, 2013  |  Hunter x Hunter (2011) - Sep 24, 2014  |  One punch man Season 1 - Dec 21, 2015  |  Konosuba Season 1 - Mar 17, 2016  |  Black Clover - Mar 30, 2021"
+        },
+        {
+          "id": "gb-300",
+          "value": 300,
+          "prompt": "Which anime (specifically) is this scene from",
+          "image": "images/gb-scene.webp",
+          "answer": "Nisemonogatari"
+        },
+        {
+          "id": "gb-500",
+          "value": 500,
+          "prompt": "Put these inventions in the order Senku from Dr. Stone created them.",
+          "rules": [
+            "Glasses Lenses",
+            "Light Bulb",
+            "Tank",
+            "Wine",
+            "Cola",
+            "Para-Acetamidobenzenesulfonyl Chloride (C8H8ClNO3S)"
+          ],
+          "answer": "1 - Wine  |  2 - Glasses Lenses  |  3 - Para-Acetamidobenzenesulfonyl Chloride (C8H8ClNO3S)  |  4 - Cola  |  5 - Light Bulb  |  6 - Tank"
+        },
+        {
+          "id": "gb-1000",
+          "value": 1000,
+          "prompt": "Welcome to Luigi Blackjack. You must play.",
+          "rules": [
+            "Dealer stands on 17",
+            "HIT",
+            "STAND",
+            "DEALER -->",
+            "<-- You",
+            "BUST – GAME OVER",
+            "YOU WIN",
+            "Luigi Wins – GAME OVER"
+          ],
+          "cards": [{ "image": "images/blackjack-bg.webp" }],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "way-2-cropped",
+      "title": "Way 2 Cropped",
+      "clues": [
+        {
+          "id": "w2c-100",
+          "value": 100,
+          "prompt": "What anime is this from?",
+          "image": "images/w2c-100.webp",
+          "answerImage": "images/w2c-100-answer.webp",
+          "answer": "Sword Art Online"
+        },
+        {
+          "id": "w2c-200",
+          "value": 200,
+          "prompt": "What anime is this from?",
+          "image": "images/w2c-200.webp",
+          "answerImage": "images/w2c-200-answer.webp",
+          "answer": "Land of the Lustrous | Houseki no Kuni"
+        },
+        {
+          "id": "w2c-300",
+          "value": 300,
+          "prompt": "What anime is this from?",
+          "image": "images/w2c-300.webp",
+          "answerImage": "images/w2c-300-answer.webp",
+          "answer": "Mob Psycho 100"
+        },
+        {
+          "id": "w2c-500",
+          "value": 500,
+          "prompt": "What anime is this from?",
+          "image": "images/w2c-500.webp",
+          "answerImage": "images/w2c-500-answer.webp",
+          "answer": "Tokyo Ghoul"
+        },
+        {
+          "id": "w2c-1000",
+          "value": 1000,
+          "prompt": "What is this character’s name?",
+          "image": "images/w2c-1000-clue.webp",
+          "answerImage": "images/w2c-1000.webp",
+          "answer": "Yor Forger | Spy x Family"
+        }
+      ]
+    },
+    {
+      "id": "soft-and-wet",
+      "title": "Soft & Wet",
+      "clues": [
+        {
+          "id": "sw-100",
+          "value": 100,
+          "prompt": "Often used in fights and sometimes filled with feathers.",
+          "answer": "Pillows"
+        },
+        {
+          "id": "sw-200",
+          "value": 200,
+          "prompt": "Used to generate random numbers, this item is a sight to behold",
+          "answer": "Lava Lamp"
+        },
+        {
+          "id": "sw-300",
+          "value": 300,
+          "prompt": "Soft, wet, and good for getting rid of a mess",
+          "answer": "Sponge"
+        },
+        {
+          "id": "sw-500",
+          "value": 500,
+          "prompt": "Soft when stroked,\nhard when smacked,\nThis item would confound Newton",
+          "answer": "Ooblek"
+        },
+        {
+          "id": "sw-1000",
+          "value": 1000,
+          "prompt": "Where does a fingernail lie on the Mohs Hardness Scale?",
+          "rules": ["Closest answer wins"],
+          "image": "images/mohs.webp",
+          "answer": "Fingernail = 2.5"
+        }
+      ]
+    },
+    {
+      "id": "say-his-name",
+      "title": "Say His Name",
+      "clues": [
+        {
+          "id": "shn-100",
+          "value": 100,
+          "prompt": "",
+          "image": "images/shn-100.webp",
+          "answer": "Foxy the Silver Fox | Captain of the Foxy Pirates"
+        },
+        {
+          "id": "shn-200",
+          "value": 200,
+          "prompt": "What is her name?",
+          "image": "images/shn-200.webp",
+          "answer": "Mitty!!"
+        },
+        {
+          "id": "shn-300",
+          "value": 300,
+          "prompt": "What is his name?",
+          "image": "images/shn-300.webp",
+          "answer": "Jacob “Jake” Sully"
+        },
+        {
+          "id": "shn-500",
+          "value": 500,
+          "prompt": "Character Name + Stand Name",
+          "image": "images/shn-500.webp",
+          "answer": "Narciso Anasui | Diver Down (Diver Drive)"
+        },
+        {
+          "id": "shn-1000",
+          "value": 1000,
+          "prompt": "This virtual idol is known for being quite “Crazy”.",
+          "image": "images/shn-1000-clue.webp",
+          "answerImage": "images/shn-1000.webp",
+          "answer": "Kureiji Ollie | Hololive ID Gen 2"
+        }
+      ]
+    },
+    {
+      "id": "nerd-emoji",
+      "title": "Nerd Emoji",
+      "clues": [
+        {
+          "id": "ne-100",
+          "value": 100,
+          "prompt": "The number you would expect when rolling 4 fair 6-sided dice.",
+          "answer": "14"
+        },
+        {
+          "id": "ne-200",
+          "value": 200,
+          "prompt": "This room has a man trapped in it.\nHe receives indecipherable messages and gives responses.",
+          "answer": "The Chinese Room"
+        },
+        {
+          "id": "ne-300",
+          "value": 300,
+          "prompt": "Solve this maths question",
+          "revealSteps": ["11*12 = ?"],
+          "answer": "11*12 = 132"
+        },
+        {
+          "id": "ne-500",
+          "value": 500,
+          "prompt": "I need a drink…\nFix me a Blue Lady but please, hold the egg.",
+          "rules": ["Name at least 2 other ingredients"],
+          "answer": "Gin | Blue Curaçao | Lemon Juice"
+        },
+        {
+          "id": "ne-1000",
+          "value": 1000,
+          "prompt": "Order these beer glasses from least to most capacity",
+          "image": "images/beer-glasses.webp",
+          "answer": "Mini Beer – 44 mL  |  Schooner – 425 mL  |  Weizen – 500 mL  |  Maß – 1 L  |  Yard of Ale – 1.4 L  |  Beer Boot – 2 L"
+        }
+      ]
+    }
+  ],
+  "final": {
+    "category": "Final Jeopardy",
+    "rules": [
+      "Everyone Plays",
+      "Place your bids. Up to $2000 or everything if you have more"
+    ],
+    "pages": [
+      {
+        "prompt": "You have 2 minutes to list as many anime/manga/manhwa titles (English or Japanese) that starts with the letter……",
+        "random": { "type": "letter" }
+      }
+    ]
+  }
+}

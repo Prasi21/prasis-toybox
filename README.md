@@ -165,8 +165,35 @@ A clue may also include:
 - `"answerImage": "images/foo-answer.webp"` — an optional image shown with the answer.
   Keep images optimised (WebP, ~1200px wide, under ~150 KB); the clue images live in
   `public/boards/images/`.
+- `"audio"` / `"answerAudio"` — optional clue audio and answer audio (e.g. `audio/op.mp3`,
+  `audio/op-answer.mp3`), mirroring the image / answer-image pair. Audio lives in
+  `public/boards/audio/`.
 - `"revealSteps": ["Ready..", "Another hint"]` — staged reveals shown one at a time
   before the answer.
+- `"cards": [ ... ]` — a richer, host-driven sequence (the "scuffed mini-game"
+  primitive). When present it replaces `revealSteps`. Each card can have:
+
+  ```json
+  {
+    "title": "Rules",
+    "text": "Dealer stands on 17.",
+    "image": "images/deal.webp",
+    "audio": "audio/clip.mp3",
+    "link": { "label": "Open the game", "href": "https://…" },
+    "timerSeconds": 120,
+    "random": { "type": "number", "min": 1, "max": 6 }
+  }
+  ```
+
+  `random` can be `{ "type": "number", "min": 1, "max": 6 }` or
+  `{ "type": "letter" }` (A–Z) — it renders a Roll button in play. Final-round
+  pages accept `random` too.
+
+  Cards cover audio clues (AMQ), cropped-image clues, ordering puzzles, and
+  narrated mini-games — no game logic, the host flips through.
+
+Board row values are editable per board (e.g. $100–$1000 instead of
+$200–$1000); audio lives in `public/boards/audio/`.
 
 The answer is always hidden until the host clicks **Reveal answer**. Clues with an
 empty `answer` skip straight to the scoring buttons. **Continue** / **Reveal answer**

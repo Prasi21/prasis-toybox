@@ -8,6 +8,34 @@
  * verbatim — never rewritten or substituted.
  */
 
+export type CardLink = {
+  label: string
+  href: string
+}
+
+export type CardRandom =
+  | { type: 'number'; min: number; max: number }
+  | { type: 'letter' }
+
+/**
+ * One step in a clue's "card stack". Cards let a clue carry a richer,
+ * host-driven sequence (images, audio, a timer, a link out) without any
+ * game logic — the scuffed-minigame primitive.
+ */
+export type Card = {
+  title?: string
+  text?: string
+  /** Image URL or a path relative to `public/boards/`. */
+  image?: string
+  /** Audio URL or a path relative to `public/boards/`. */
+  audio?: string
+  link?: CardLink
+  /** Optional countdown shown on this card, in seconds. */
+  timerSeconds?: number
+  /** Optional random generator (a die roll or a random letter). */
+  random?: CardRandom
+}
+
 export type Clue = {
   id: string
   value: number
@@ -22,8 +50,14 @@ export type Clue = {
   image?: string
   /** Optional image revealed with the answer. */
   answerImage?: string
+  /** Optional audio played with the clue (a path or an absolute URL). */
+  audio?: string
+  /** Optional audio played when the answer is revealed. */
+  answerAudio?: string
   /** Optional staged reveals shown one at a time before the answer. */
   revealSteps?: string[]
+  /** Optional richer sequence. When present, this replaces `revealSteps`. */
+  cards?: Card[]
   /** Optional host note. Never shown during play. */
   note?: string
 }
@@ -39,6 +73,8 @@ export type FinalPage = {
   prompt: string
   answer?: string
   image?: string
+  /** Optional random generator shown on this page. */
+  random?: CardRandom
 }
 
 export type FinalRound = {

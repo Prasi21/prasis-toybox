@@ -1,4 +1,4 @@
-{
+﻿{
   "boards": [
     {
       "id": "jeopardy-2-for-da-nerds",
@@ -6,6 +6,13 @@
       "title": "Jeopardy 2 for da Nerds",
       "description": "Six categories of trivia — from data structures to trademarks that became common.",
       "updatedAt": "2026-10-09"
+    },
+    {
+      "id": "prasis-jeopardy",
+      "file": "prasis-jeopardy.json",
+      "title": "Prasi's Jeopardy!!!",
+      "description": "Anime, drinks and grab-bag chaos.",
+      "updatedAt": "2026-10-10"
     }
   ]
 }

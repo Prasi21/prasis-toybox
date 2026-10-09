@@ -3,6 +3,7 @@ import {
   type Board,
   type BoardManifest,
   type BoardSummary,
+  type Card,
   type Category,
 } from '../types'
 
@@ -75,19 +76,30 @@ export function removeSummary(manifest: BoardManifest, id: string): BoardManifes
   return { boards: manifest.boards.filter((b) => b.id !== id) }
 }
 
+export function blankCard(): Card {
+  return { text: '' }
+}
+
 export function validateBoard(board: Board): string[] {
   const errors: string[] = []
   if (!board.title.trim()) errors.push('Board title is required.')
   if (!/^[a-z0-9][a-z0-9-]*$/.test(board.id)) {
     errors.push('Board id must be lowercase letters, numbers and hyphens.')
   }
+  if (board.values.length !== 5 || board.values.some((v) => !Number.isFinite(v))) {
+    errors.push('A board needs exactly 5 row values.')
+  }
   if (board.categories.length !== 6) errors.push('A board needs exactly 6 categories.')
   board.categories.forEach((category, ci) => {
     if (!category.title.trim()) errors.push(`Category ${ci + 1} needs a title.`)
     if (category.clues.length !== 5) errors.push(`Category ${ci + 1} needs exactly 5 clues.`)
     category.clues.forEach((clue) => {
-      if (!clue.prompt.trim()) {
-        errors.push(`Category ${ci + 1}, $${clue.value}: the prompt is empty.`)
+      const hasCards = (clue.cards?.length ?? 0) > 0
+      const hasImage = Boolean(clue.image)
+      if (!clue.prompt.trim() && !hasCards && !hasImage) {
+        errors.push(
+          `Category ${ci + 1}, $${clue.value}: add a prompt, an image, or at least one card.`,
+        )
       }
     })
   })

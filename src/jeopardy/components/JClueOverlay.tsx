@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import type { Clue, Player } from '../types'
-import { resolveImage } from '../loader'
+import type { Card, Clue, Player } from '../types'
+import { resolveAsset } from '../loader'
 import { money } from '../format'
+import { RandomRoller } from './RandomRoller'
 
 type Props = {
   categoryTitle: string
@@ -10,8 +11,89 @@ type Props = {
   onAward: (playerId: string, delta: number) => void
   /** keepTile = true keeps the tile used; false returns it to the board unused. */
   onClose: (keepTile: boolean) => void
-  /** Optional override so the editor can preview un-committed images. */
-  imageResolver?: (src?: string) => string | undefined
+  /** Optional override so the editor can preview un-committed assets. */
+  assetResolver?: (src?: string) => string | undefined
+}
+
+function Countdown({ seconds }: { seconds: number }) {
+  const [remaining, setRemaining] = useState(seconds)
+  const [running, setRunning] = useState(false)
+
+  useEffect(() => {
+    if (!running) return
+    const id = window.setInterval(() => {
+      setRemaining((r) => {
+        if (r <= 1) {
+          setRunning(false)
+          return 0
+        }
+        return r - 1
+      })
+    }, 1000)
+    return () => window.clearInterval(id)
+  }, [running])
+
+  const mm = Math.floor(remaining / 60)
+  const ss = String(remaining % 60).padStart(2, '0')
+
+  return (
+    <div className="jcard__timer">
+      <span className={`jcard__clock${running ? ' is-running' : ''}`}>
+        {mm}:{ss}
+      </span>
+      <button
+        type="button"
+        className="jbtn jbtn--sm"
+        onClick={() => setRunning((r) => !r)}
+        disabled={remaining === 0}
+      >
+        {running ? 'Pause' : remaining === seconds ? 'Start timer' : 'Resume'}
+      </button>
+      <button
+        type="button"
+        className="jbtn jbtn--sm jbtn--quiet"
+        onClick={() => {
+          setRunning(false)
+          setRemaining(seconds)
+        }}
+      >
+        Reset
+      </button>
+    </div>
+  )
+}
+
+function CardView({
+  card,
+  resolve,
+}: {
+  card: Card
+  resolve: (src?: string) => string | undefined
+}) {
+  const image = resolve(card.image)
+  const audio = resolve(card.audio)
+  return (
+    <div className="jcard">
+      {card.title && <h3 className="jcard__title">{card.title}</h3>}
+      {card.text && <p className="jcard__text">{card.text}</p>}
+      {image && <img className="joverlay__img" src={image} alt="" />}
+      {audio && <audio className="jcard__audio" controls src={audio} />}
+      {card.link && card.link.href && (
+        <a
+          className="jbtn jbtn--primary jcard__link"
+          href={card.link.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {card.link.label || 'Open link'}
+        </a>
+      )}
+      {card.random && <RandomRoller spec={card.random} />}
+      {typeof card.timerSeconds === 'number' && card.timerSeconds > 0 && (
+        <Countdown seconds={card.timerSeconds} />
+      )}
+    </div>
+  )
 }
 
 export function JClueOverlay({
@@ -20,10 +102,14 @@ export function JClueOverlay({
   players,
   onAward,
   onClose,
-  imageResolver = resolveImage,
+  assetResolver = resolveAsset,
 }: Props) {
+  const cards = clue.cards && clue.cards.length > 0 ? clue.cards : null
   const steps = clue.revealSteps ?? []
-  const [progress, setProgress] = useState(0)
+  const stepCount = cards ? cards.length : steps.length
+  const minProgress = cards ? 1 : 0
+
+  const [progress, setProgress] = useState(minProgress)
   const [revealed, setRevealed] = useState(false)
 
   useEffect(() => {
@@ -34,21 +120,23 @@ export function JClueOverlay({
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const image = imageResolver(clue.image)
-  const answerImage = imageResolver(clue.answerImage)
+  const image = assetResolver(clue.image)
+  const answerImage = assetResolver(clue.answerImage)
+  const audio = assetResolver(clue.audio)
+  const answerAudio = assetResolver(clue.answerAudio)
   const hasAnswer = clue.answer.trim().length > 0
-  const stepsDone = progress >= steps.length
+  const stepsDone = progress >= stepCount
   // The answer always requires a click to reveal.
   const showAnswer = stepsDone && hasAnswer && revealed
   const showAwards = stepsDone && (revealed || !hasAnswer)
-  const canGoBack = revealed || progress > 0
+  const canGoBack = revealed || progress > minProgress
 
   const goBack = () => {
     if (revealed) {
       setRevealed(false)
       return
     }
-    setProgress((p) => Math.max(0, p - 1))
+    setProgress((p) => Math.max(minProgress, p - 1))
   }
 
   return (
@@ -64,8 +152,6 @@ export function JClueOverlay({
           <span className="joverlay__value">{money(clue.value)}</span>
         </div>
 
-        {image && <img className="joverlay__img" src={image} alt="" />}
-
         <p className="joverlay__prompt">{clue.prompt}</p>
 
         {clue.rules && clue.rules.length > 0 && (
@@ -76,11 +162,20 @@ export function JClueOverlay({
           </ul>
         )}
 
-        {steps.slice(0, progress).map((step, index) => (
-          <p className="joverlay__step" key={index}>
-            {step}
-          </p>
-        ))}
+        {image && <img className="joverlay__img" src={image} alt="" />}
+        {audio && <audio className="jcard__audio" controls src={audio} />}
+
+        {cards ? (
+          cards[progress - 1] && (
+            <CardView key={progress} card={cards[progress - 1]} resolve={assetResolver} />
+          )
+        ) : (
+          steps.slice(0, progress).map((step, index) => (
+            <p className="joverlay__step" key={index}>
+              {step}
+            </p>
+          ))
+        )}
 
         {showAnswer && (
           <div className="jclue__answer">
@@ -88,6 +183,9 @@ export function JClueOverlay({
             <p className="joverlay__answer">{clue.answer}</p>
             {answerImage && (
               <img className="joverlay__img joverlay__img--answer" src={answerImage} alt="" />
+            )}
+            {answerAudio && (
+              <audio className="jcard__audio jcard__audio--answer" controls src={answerAudio} />
             )}
           </div>
         )}
@@ -132,7 +230,7 @@ export function JClueOverlay({
             <button
               type="button"
               className="jbtn jbtn--primary"
-              onClick={() => setProgress((p) => p + 1)}
+              onClick={() => setProgress((p) => Math.min(stepCount, p + 1))}
             >
               Continue
             </button>
