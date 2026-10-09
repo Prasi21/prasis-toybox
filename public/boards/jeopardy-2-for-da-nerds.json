@@ -2,7 +2,13 @@
   "id": "jeopardy-2-for-da-nerds",
   "title": "Jeopardy 2 for da Nerds",
   "description": "Six categories of trivia — from data structures to trademarks that became common.",
-  "values": [200, 400, 600, 800, 1000],
+  "values": [
+    200,
+    400,
+    600,
+    800,
+    1000
+  ],
   "updatedAt": "2026-10-09",
   "categories": [
     {
@@ -18,8 +24,8 @@
         {
           "id": "mm-dsa-400",
           "value": 400,
-          "prompt": "A function defined in terms of itself",
-          "revealSteps": ["Or", "Again and again and again and again…"],
+          "prompt": "A function defined in terms of itself\nOr\nAgain and again and again and again…",
+          "revealSteps": [],
           "answer": "Recursion"
         },
         {
@@ -181,7 +187,9 @@
           "id": "gb-600",
           "value": 600,
           "prompt": "DM me a number from 1-100",
-          "rules": ["The person closest to half the average of guesses wins"],
+          "rules": [
+            "The person closest to half the average of guesses wins"
+          ],
           "answer": ""
         },
         {
