@@ -100,7 +100,7 @@
           "id": "obf-400",
           "value": 400,
           "prompt": "This name of this place.",
-          "answer": "The Crawley Edge Boatshed",
+          "answer": "The Crawley Edge Boatshed (Blue Boathouse)",
           "image": "images/boatshed-clue.webp",
           "answerImage": "images/boatshed.webp"
         },
@@ -118,7 +118,8 @@
           "prompt": "What Flag is this with its pixels sorted.",
           "answer": "Brazil!",
           "image": "images/brazil-clue.webp",
-          "answerImage": "images/brazil.webp"
+          "answerImage": "images/brazil.webp",
+          "revealSteps": []
         },
         {
           "id": "obf-1000",
@@ -203,7 +204,11 @@
             "What % people do not affiliate with a religion?",
             "What % use a car to travel to work?"
           ],
-          "answer": "12.6% · 42.5% · 66.7%"
+          "answer": "12.6% · 42.5% · 66.7%",
+          "revealSteps": [
+            "12.6%",
+            "12.6% · 42.5%"
+          ]
         },
         {
           "id": "gb-1000",
