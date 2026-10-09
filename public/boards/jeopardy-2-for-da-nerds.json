@@ -1,0 +1,282 @@
+{
+  "id": "jeopardy-2-for-da-nerds",
+  "title": "Jeopardy 2 for da Nerds",
+  "description": "Six categories of trivia — from data structures to trademarks that became common.",
+  "values": [200, 400, 600, 800, 1000],
+  "updatedAt": "2026-10-09",
+  "categories": [
+    {
+      "id": "mm-dsa",
+      "title": "Mm..DSA",
+      "clues": [
+        {
+          "id": "mm-dsa-200",
+          "value": 200,
+          "prompt": "This popular breakfast food is often served in this structure.",
+          "answer": "Pancake Stack"
+        },
+        {
+          "id": "mm-dsa-400",
+          "value": 400,
+          "prompt": "A function defined in terms of itself",
+          "revealSteps": ["Or", "Again and again and again and again…"],
+          "answer": "Recursion"
+        },
+        {
+          "id": "mm-dsa-600",
+          "value": 600,
+          "prompt": "A terrible sorting algorithm that starts with an acronym for a good deal",
+          "answer": "BOGO(sort)"
+        },
+        {
+          "id": "mm-dsa-800",
+          "value": 800,
+          "prompt": "The Egyptian god of chaos, deserts and storms, or a collection of items",
+          "answer": "Set"
+        },
+        {
+          "id": "mm-dsa-1000",
+          "value": 1000,
+          "prompt": "Two parties (or two processes) reach an impasse",
+          "answer": "Deadlock"
+        }
+      ]
+    },
+    {
+      "id": "pay-your-bil",
+      "title": "Pay your BIL",
+      "clues": [
+        {
+          "id": "bil-200",
+          "value": 200,
+          "prompt": "A person that speaks two languages is called this",
+          "answer": "Bilingual"
+        },
+        {
+          "id": "bil-400",
+          "value": 400,
+          "prompt": "A game about hitting balls into holes.",
+          "answer": "Billiards"
+        },
+        {
+          "id": "bil-600",
+          "value": 600,
+          "prompt": "A substance secreted by the gall bladder.",
+          "answer": "Bile"
+        },
+        {
+          "id": "bil-800",
+          "value": 800,
+          "prompt": "A very famous short person from the works of J. R. R. Tolkien",
+          "answer": "Bilbo Baggins"
+        },
+        {
+          "id": "bil-1000",
+          "value": 1000,
+          "prompt": "Often regaled as the YouTube of China",
+          "answer": "Bilibili (哔哩哔哩)"
+        }
+      ]
+    },
+    {
+      "id": "obfuscation",
+      "title": "Obfuscation Techniques",
+      "clues": [
+        {
+          "id": "obf-200",
+          "value": 200,
+          "prompt": "The name of this place.",
+          "answer": "Uluru",
+          "image": "images/uluru-clue.webp",
+          "answerImage": "images/uluru.webp"
+        },
+        {
+          "id": "obf-400",
+          "value": 400,
+          "prompt": "This name of this place.",
+          "answer": "The Crawley Edge Boatshed",
+          "image": "images/boatshed-clue.webp",
+          "answerImage": "images/boatshed.webp"
+        },
+        {
+          "id": "obf-600",
+          "value": 600,
+          "prompt": "The name of this place.",
+          "answer": "The Grand Canyon",
+          "image": "images/grand-canyon-clue.webp",
+          "answerImage": "images/grand-canyon.webp"
+        },
+        {
+          "id": "obf-800",
+          "value": 800,
+          "prompt": "What Flag is this with its pixels sorted.",
+          "answer": "Brazil!",
+          "image": "images/brazil-clue.webp",
+          "answerImage": "images/brazil.webp"
+        },
+        {
+          "id": "obf-1000",
+          "value": 1000,
+          "prompt": "The name of this place.",
+          "answer": "Christ the Redeemer",
+          "image": "images/christ-clue.webp",
+          "answerImage": "images/christ.webp"
+        }
+      ]
+    },
+    {
+      "id": "music-to-sports",
+      "title": "Music to Sports",
+      "clues": [
+        {
+          "id": "mts-200",
+          "value": 200,
+          "prompt": "A chirping insect to a major international bat-and-ball sport",
+          "answer": "Cricket"
+        },
+        {
+          "id": "mts-400",
+          "value": 400,
+          "prompt": "The perceived frequency of a note to the playing surface in soccer",
+          "answer": "Pitch"
+        },
+        {
+          "id": "mts-600",
+          "value": 600,
+          "prompt": "The low groove in funk to a boundary line in basketball or tennis",
+          "answer": "Bassline / Baseline"
+        },
+        {
+          "id": "mts-800",
+          "value": 800,
+          "prompt": "The written music for a film to the tally of points in a game",
+          "answer": "Score"
+        },
+        {
+          "id": "mts-1000",
+          "value": 1000,
+          "prompt": "Improvised lyrical flow to a 100-meter swimming event at the Summer Olympics",
+          "answer": "Freestyle"
+        }
+      ]
+    },
+    {
+      "id": "grab-bag",
+      "title": "Grab Bag",
+      "clues": [
+        {
+          "id": "gb-200",
+          "value": 200,
+          "prompt": "Which car moves first?",
+          "answer": "A",
+          "image": "images/grab-bag-cars.webp"
+        },
+        {
+          "id": "gb-400",
+          "value": 400,
+          "prompt": "The physical phenomena that deforms objects that are sucked into a blackhole",
+          "answer": "Spaghettification"
+        },
+        {
+          "id": "gb-600",
+          "value": 600,
+          "prompt": "DM me a number from 1-100",
+          "rules": ["The person closest to half the average of guesses wins"],
+          "answer": ""
+        },
+        {
+          "id": "gb-800",
+          "value": 800,
+          "prompt": "StatAttack",
+          "rules": [
+            "Guess the percentages of each *WA stat. Player with the most, closest stats wins.",
+            "*taken from 2021 Census",
+            "What % of people in WA are aged 20-29?",
+            "What % people do not affiliate with a religion?",
+            "What % use a car to travel to work?"
+          ],
+          "answer": "12.6% · 42.5% · 66.7%"
+        },
+        {
+          "id": "gb-1000",
+          "value": 1000,
+          "prompt": "Split or Steal",
+          "rules": [
+            "Spin the wheel to select 1 random player.",
+            "There is $1000 up for grabs.",
+            "You will both DM me choosing whether to split or steal.",
+            "P1 / P2 payoff:",
+            "Split / Split — $500 each",
+            "Split / Steal — P2 gets all $1000",
+            "Steal / Split — P1 gets all $1000",
+            "Steal / Steal — Both get $0"
+          ],
+          "answer": ""
+        }
+      ]
+    },
+    {
+      "id": "trademarks",
+      "title": "Trademarks that became common",
+      "clues": [
+        {
+          "id": "tm-200",
+          "value": 200,
+          "prompt": "A business that lets you wash your clothes for but a coin.",
+          "answer": "Laundromat"
+        },
+        {
+          "id": "tm-400",
+          "value": 400,
+          "prompt": "A flask that keeps your beverages warm",
+          "answer": "Thermos"
+        },
+        {
+          "id": "tm-600",
+          "value": 600,
+          "prompt": "An adhesive patch used to cover wounds.",
+          "answer": "Band-Aid"
+        },
+        {
+          "id": "tm-800",
+          "value": 800,
+          "prompt": "Artificial turf used in tennis, baseball, and playgrounds.",
+          "answer": "Astroturf"
+        },
+        {
+          "id": "tm-1000",
+          "value": 1000,
+          "prompt": "Its not laces but it holds your footwear together.",
+          "answer": "Velcro"
+        }
+      ]
+    }
+  ],
+  "final": {
+    "category": "Final Jeopardy",
+    "rules": [
+      "Everyone Plays",
+      "Place your bids. Up to $2000 or everything if you have more.",
+      "Win your wager or lose everything you bet.",
+      "DM me your wagers, I will announce when they are all in.",
+      "The Bottom of the top 10",
+      "Place one answer for each question but aim for the bottom of the top 10. However, if you go below you bust.",
+      "Highest total points wins",
+      "Position / Points — 1st lowest: 5pts · 2nd lowest: 3pts · 3rd lowest: 2pts · BUST: 0pts"
+    ],
+    "pages": [
+      {
+        "prompt": "Name one of the top 10 most populated countries in the world.",
+        "answer": "India · China · United States · Indonesia · Pakistan · Nigeria · Brazil · Bangladesh · Russia · Mexico"
+      },
+      {
+        "prompt": "Name one of the top 10 car manufacturers by most cars sold in 2025 (Worldwide).",
+        "answer": "Toyota · Volkswagen · Hyundai · General Motor (Holden) · Stellantis · Ford · BYD · Honda · Suzuki · Nissan"
+      },
+      {
+        "prompt": "Name one of the top 10 of Australia's biggest exports by value.",
+        "answer": "Iron ores · Coal · Education · Natural Gas · Personal Travel Services · Gold · Aluminium · Beef · Petroleum · Copper Ores"
+      }
+    ]
+  }
+}

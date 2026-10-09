@@ -9,7 +9,8 @@ Currently inside the box:
 | Toy | Status |
 | --- | --- |
 | Tic-Tac-Toe (2-player local) | ✅ Playable |
-| 5 reserved slots | 🚧 Coming soon |
+| Jeopardy (board library + play + final round) | ✅ Playable |
+| 4 reserved slots | 🚧 Coming soon |
 
 ---
 
@@ -33,17 +34,28 @@ npm run preview  # serve the production build locally
 
 ```
 src/
-  App.tsx                     # page shell, hero, toy grid, modal wiring
-  index.css                   # all styling + design tokens (the palette lives here)
+  App.tsx                      # hash router + route table
+  main.tsx                     # React entry
+  pages/
+    ToyboxHome.tsx             # homepage: hero + toy grid
   components/
-    Tessellation.tsx          # the isometric-cube pattern (signature visual)
-    ToyCard.tsx               # a single card in the toybox
-    ToyStage.tsx              # the full-screen focus view that hosts a toy
+    Tessellation.tsx           # the isometric-cube pattern (signature visual)
+    ToyCard.tsx                # a single card in the toybox
+    ToyStage.tsx               # full-screen focus view for simple toys
   games/
-    TicTacToe.tsx             # the first game
+    TicTacToe.tsx              # first game
+  jeopardy/
+    types.ts                   # board data model
+    loader.ts                  # fetches boards from public/boards/
+    jeopardy.css               # jeopardy styling
+    components/                # JBoard, JScoreboard, JClueOverlay, JFinal, JShell
+    pages/                     # JeopardyLibrary, JeopardyPlay
 public/
+  boards/
+    index.json                 # manifest: which boards exist
+    *.json                     # one file per board
   favicon.svg
-.github/workflows/deploy.yml  # auto-deploys to GitHub Pages on every push
+.github/workflows/deploy.yml   # auto-deploys to GitHub Pages on every push
 ```
 
 ### Design tokens
@@ -62,8 +74,8 @@ The palette (from a bold isometric-cube reference) is defined at the top of
 
 ## Adding a new toy
 
-1. Create `src/games/MyGame.tsx` and export a component.
-2. Add an entry to the `TOYS` array in `src/App.tsx`:
+1. Simple toys live in `src/games/`. Create `src/games/MyGame.tsx` and export a component.
+2. Add an entry to the `TOYS` array in `src/pages/ToyboxHome.tsx`:
 
    ```tsx
    {
@@ -76,15 +88,85 @@ The palette (from a bold isometric-cube reference) is defined at the top of
    }
    ```
 
-3. Render it in the focus view near the bottom of `src/App.tsx`:
+3. Render it in the focus view near the bottom of `src/pages/ToyboxHome.tsx`:
 
    ```tsx
    {active.id === 'tic-tac-toe' && <TicTacToe />}
    {active.id === 'my-game' && <MyGame />}
    ```
 
+   For a toy with its own pages (like Jeopardy), give the entry a `to: '/my-game'`
+   instead and add a `<Route>` in `src/App.tsx`.
+
 To *un-reserve* a "Coming Soon" slot, just swap its object for a real, playable
 toy and give it a matching `variant`.
+
+---
+
+## Jeopardy
+
+Jeopardy is its own section: a **board library** (`/#/jeopardy`) → **play**
+(`/#/jeopardy/<board-id>`). Boards are plain JSON files in `public/boards/`,
+fetched at runtime, so the site stays fully static — anyone can play, no accounts.
+
+### Adding a board (by hand)
+
+1. Create `public/boards/my-board.json`:
+
+   ```json
+   {
+     "id": "my-board",
+     "title": "My Board",
+     "description": "One line about it.",
+     "values": [200, 400, 600, 800, 1000],
+     "categories": [
+       {
+         "id": "cat-1",
+         "title": "Category One",
+         "clues": [
+           { "id": "c1-200", "value": 200, "prompt": "The clue text.", "answer": "The response." },
+           { "id": "c1-400", "value": 400, "prompt": "...", "answer": "..." },
+           { "id": "c1-600", "value": 600, "prompt": "...", "answer": "..." },
+           { "id": "c1-800", "value": 800, "prompt": "...", "answer": "..." },
+           { "id": "c1-1000", "value": 1000, "prompt": "...", "answer": "..." }
+         ]
+       }
+     ],
+     "final": {
+       "category": "Final Jeopardy",
+       "rules": ["Optional rules shown first"],
+       "pages": [
+         { "prompt": "Question one.", "answer": "Answer one." },
+         { "prompt": "Question two.", "answer": "Answer two." }
+       ]
+     }
+   }
+   ```
+
+2. Add it to `public/boards/index.json`:
+
+   ```json
+   { "boards": [{ "id": "my-board", "file": "my-board.json", "title": "My Board" }] }
+   ```
+
+A clue may also include:
+
+- `"rules": ["...", "..."]` — extra rules/instructions shown with the clue (for
+  mini-game tiles). Informational only; any scoring happens off-screen.
+- `"image": "images/foo.webp"` — a path relative to `public/boards/`, or an absolute URL.
+- `"answerImage": "images/foo-answer.webp"` — an optional image shown with the answer.
+  Keep images optimised (WebP, ~1200px wide, under ~150 KB); the clue images live in
+  `public/boards/images/`.
+- `"revealSteps": ["Ready..", "Another hint"]` — staged reveals shown one at a time
+  before the answer.
+
+The answer is always hidden until the host clicks **Reveal answer**. Clues with an
+empty `answer` skip straight to the scoring buttons. **Continue** / **Reveal answer**
+always come with a **Back** button, and **Exit card** returns an accidentally opened
+tile to the board unused.
+
+> A built-in **browser editor** — a protected `/#/jeopardy/admin` page that commits
+> boards back to the repo via the GitHub API — is planned but not built yet.
 
 ---
 

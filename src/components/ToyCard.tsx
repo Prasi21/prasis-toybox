@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Tessellation, type TessVariant } from './Tessellation'
 
 type Props = {
@@ -6,10 +7,12 @@ type Props = {
   badge: string
   variant: TessVariant
   playable?: boolean
+  /** When set, the playable card navigates to this route. */
+  to?: string
   onOpen?: () => void
 }
 
-export function ToyCard({ title, tagline, badge, variant, playable, onOpen }: Props) {
+export function ToyCard({ title, tagline, badge, variant, playable, to, onOpen }: Props) {
   const inner = (
     <>
       <div className="toy-card__art">
@@ -23,6 +26,14 @@ export function ToyCard({ title, tagline, badge, variant, playable, onOpen }: Pr
       </div>
     </>
   )
+
+  if (playable && to) {
+    return (
+      <Link to={to} className="toy-card is-playable">
+        {inner}
+      </Link>
+    )
+  }
 
   if (playable) {
     return (

@@ -1,0 +1,11 @@
+{
+  "boards": [
+    {
+      "id": "jeopardy-2-for-da-nerds",
+      "file": "jeopardy-2-for-da-nerds.json",
+      "title": "Jeopardy 2 for da Nerds",
+      "description": "Six categories of trivia — from data structures to trademarks that got genericised.",
+      "updatedAt": "2026-10-09"
+    }
+  ]
+}

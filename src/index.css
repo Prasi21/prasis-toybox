@@ -223,6 +223,7 @@ p {
   text-align: left;
   background: var(--cream-100);
   color: var(--navy-800);
+  text-decoration: none;
   border: 3px solid var(--navy-950);
   border-radius: var(--radius);
   box-shadow: 7px 7px 0 var(--navy-950);
