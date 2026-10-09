@@ -3,7 +3,7 @@ import type { Board, BoardManifest, BoardSummary } from './types'
 const BASE = import.meta.env.BASE_URL
 
 async function getJson<T>(path: string): Promise<T> {
-  const res = await fetch(path)
+  const res = await fetch(path, { cache: 'no-cache' })
   if (!res.ok) throw new Error(`Failed to load ${path} (HTTP ${res.status})`)
   return (await res.json()) as T
 }

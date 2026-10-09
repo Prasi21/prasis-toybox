@@ -328,9 +328,24 @@ p {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
   padding: 30px 24px 44px;
   font-size: 13px;
   color: var(--cream-300);
+}
+
+.footer__link {
+  color: var(--cream-300);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(237, 231, 218, 0.3);
+  transition:
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+
+.footer__link:hover {
+  color: var(--orange-400);
+  border-color: var(--orange-400);
 }
 
 .footer__cube {

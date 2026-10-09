@@ -10,9 +10,18 @@ type Props = {
   onAward: (playerId: string, delta: number) => void
   /** keepTile = true keeps the tile used; false returns it to the board unused. */
   onClose: (keepTile: boolean) => void
+  /** Optional override so the editor can preview un-committed images. */
+  imageResolver?: (src?: string) => string | undefined
 }
 
-export function JClueOverlay({ categoryTitle, clue, players, onAward, onClose }: Props) {
+export function JClueOverlay({
+  categoryTitle,
+  clue,
+  players,
+  onAward,
+  onClose,
+  imageResolver = resolveImage,
+}: Props) {
   const steps = clue.revealSteps ?? []
   const [progress, setProgress] = useState(0)
   const [revealed, setRevealed] = useState(false)
@@ -25,8 +34,8 @@ export function JClueOverlay({ categoryTitle, clue, players, onAward, onClose }:
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  const image = resolveImage(clue.image)
-  const answerImage = resolveImage(clue.answerImage)
+  const image = imageResolver(clue.image)
+  const answerImage = imageResolver(clue.answerImage)
   const hasAnswer = clue.answer.trim().length > 0
   const stepsDone = progress >= steps.length
   // The answer always requires a click to reveal.

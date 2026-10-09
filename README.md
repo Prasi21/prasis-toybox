@@ -10,6 +10,7 @@ Currently inside the box:
 | --- | --- |
 | Tic-Tac-Toe (2-player local) | ✅ Playable |
 | Jeopardy (board library + play + final round) | ✅ Playable |
+| Jeopardy board editor (browser, git-backed) | ✅ Ready |
 | 4 reserved slots | 🚧 Coming soon |
 
 ---
@@ -50,6 +51,13 @@ src/
     jeopardy.css               # jeopardy styling
     components/                # JBoard, JScoreboard, JClueOverlay, JFinal, JShell
     pages/                     # JeopardyLibrary, JeopardyPlay
+    admin/                     # the board editor (GitHub-backed, no server)
+      github.ts                # GitHub API client (atomic commits)
+      auth.ts                  # token / owner / repo config
+      image.ts                 # browser image resize + WebP compression
+      boardUtils.ts            # blank board, manifest + validation helpers
+      components/  pages/      # editor UI
+      admin.css
 public/
   boards/
     index.json                 # manifest: which boards exist
@@ -165,8 +173,37 @@ empty `answer` skip straight to the scoring buttons. **Continue** / **Reveal ans
 always come with a **Back** button, and **Exit card** returns an accidentally opened
 tile to the board unused.
 
-> A built-in **browser editor** — a protected `/#/jeopardy/admin` page that commits
-> boards back to the repo via the GitHub API — is planned but not built yet.
+## Editing boards (the admin editor)
+
+Boards can be created and edited in the browser at **`/#/jeopardy/admin`** (linked
+from the site footer). There is no backend — the editor commits straight to this
+repository through the GitHub API, and the Pages deploy updates the live site in
+about a minute.
+
+### One-time setup
+
+1. Create a **fine-grained personal access token**: GitHub → Settings → Developer
+   settings → Personal access tokens → Fine-grained tokens.
+2. Scope it to **this repository only**, with
+   **Repository permissions → Contents: Read and write**.
+3. Open `/#/jeopardy/admin`, paste the token, confirm owner/repo/branch (auto-filled
+   from the Pages URL), and click **Connect**.
+
+The token is stored only in that browser's localStorage and is sent only to
+`api.github.com`. Use **Sign out** to clear it, or revoke it on GitHub any time.
+
+### What you can do
+
+- **New board**, **Edit**, **Duplicate**, **Delete**.
+- Edit the title, id, description, the final round, and all 6×5 clues (prompt,
+  answer, rules, reveal steps, and images).
+- **Preview** a board exactly as players see it, before committing.
+- Upload images — they're resized and compressed to WebP in the browser, then
+  committed into `public/boards/images/`.
+
+Each save is a **single atomic commit** to `main`, so the board file, the manifest,
+and any new images all land together. Unsaved edits are kept as a local draft and
+restored if you refresh.
 
 ---
 

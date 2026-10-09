@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Tessellation, type TessVariant } from '../components/Tessellation'
 import { ToyCard } from '../components/ToyCard'
 import { ToyStage } from '../components/ToyStage'
@@ -129,6 +130,9 @@ export default function ToyboxHome() {
         <p>
           Prasi&apos;s Toybox &middot; built with React + Vite &middot; {new Date().getFullYear()}
         </p>
+        <Link to="/jeopardy/admin" className="footer__link">
+          Edit boards
+        </Link>
       </footer>
 
       {active && (
